@@ -13,11 +13,22 @@
     },
     {
       "id": "562c",
-      "name": "planejamentoeesss",
-      "budget": "2342342",
+      "name": "planejamento",
+      "budget": "50000",
       "category": {
         "id": "4",
         "name": "Planejamento"
+      },
+      "cost": 0,
+      "services": []
+    },
+    {
+      "id": "6414",
+      "name": "novoprojeto",
+      "budget": "10000",
+      "category": {
+        "id": "3",
+        "name": "Designer"
       },
       "cost": 0,
       "services": []
@@ -25,19 +36,19 @@
   ],
   "categories": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Infra"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Desenvolvimento"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Designer"
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Planejamento"
     }
   ]
