@@ -1,5 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { db } from '../../../firebaseConfig';
+import { ref, get, remove } from 'firebase/database';
 
 import styles from './Projects.module.css';
 
@@ -22,29 +24,29 @@ function Projects() {
 
   useEffect(() => {
     setTimeout(() => {
-      fetch('http://localhost:5000/projects', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-        .then((resp) => resp.json())
-        .then((data) => {
-          setProjects(data);
-          setRemoveLoading(true);
+      const projectsRef = ref(db, 'projects');
+      get(projectsRef)
+        .then((snapshot) => {
+          if (snapshot.exists()) {
+            const data = snapshot.val();
+            const projectsArray = Object.keys(data).map((key) => ({
+              id: key,
+              ...data[key],
+            }));
+            setProjects(projectsArray);
+            setRemoveLoading(true);
+          } else {
+            setRemoveLoading(true);
+            console.log('No projects available');
+          }
         })
         .catch((err) => console.log(err));
     }, 300);
   }, []);
 
   function removeProject(id) {
-    fetch(`http://localhost:5000/projects/${id}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((resp) => resp.json())
+    const projectRef = ref(db, `projects/${id}`);
+    remove(projectRef)
       .then(() => {
         setProjects(projects.filter((project) => project.id !== id));
         setProjectMessage('Projeto removido com sucesso!');
@@ -56,7 +58,7 @@ function Projects() {
     <div className={styles.project_container}>
       <div className={styles.title_container}>
         <h1>Meus projetos</h1>
-        <LinkButton to="/newproject" text="Criar Pojeto" />
+        <LinkButton to="/newproject" text="Criar Projeto" />
       </div>
       {message && <Message msg={message} type="success" />}
       {projectMessage && <Message msg={projectMessage} type="success" />}

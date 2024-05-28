@@ -2,6 +2,8 @@ import styles from './Project.module.css';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { parse, v4 as uuidv4 } from 'uuid';
+import { db } from '../../../firebaseConfig';
+import { ref, get, update } from 'firebase/database';
 
 import Loading from '../layout/Loading';
 import Container from '../layout/Container';
@@ -21,39 +23,32 @@ function Project() {
 
   useEffect(() => {
     setTimeout(() => {
-      fetch(`http://localhost:5000/projects/${id}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-        .then((resp) => resp.json())
-        .then((data) => {
-          setProject(data);
-          setServices(data.services);
+      const projectRef = ref(db, `projects/${id}`);
+      get(projectRef)
+        .then((snapshot) => {
+          if (snapshot.exists()) {
+            const data = snapshot.val();
+            setProject(data);
+            setServices(data.services || []);
+          } else {
+            console.log('Project not found');
+          }
         })
         .catch((err) => console.log(err));
     }, 300);
   }, [id]);
 
   function editPost(project) {
-    // budget validation
     if (project.budget < project.cost) {
       setMessage('O orçamento não pode ser menor que o custo do projeto!');
       setType('error');
       return false;
     }
 
-    fetch(`http://localhost:5000/projects/${project.id}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(project),
-    })
-      .then((resp) => resp.json())
-      .then((data) => {
-        setProject(data);
+    const projectRef = ref(db, `projects/${project.id}`);
+    update(projectRef, project)
+      .then(() => {
+        setProject(project);
         setShowProjectForm(false);
         setMessage('Projeto atualizado!');
         setType('success');
@@ -63,14 +58,13 @@ function Project() {
         setMessage('Houve um erro ao atualizar o projeto.');
         setType('error');
       });
-    setMessage('');
   }
 
   function createService(project) {
     setMessage('');
     const lastService = project.services[project.services.length - 1];
-
     lastService.id = uuidv4();
+
     const lastServiceCost = lastService.cost;
     const newCost = parseFloat(project.cost) + parseFloat(lastServiceCost);
 
@@ -83,16 +77,11 @@ function Project() {
 
     project.cost = newCost;
 
-    fetch(`http://localhost:5000/projects/${project.id}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(project),
-    })
-      .then((resp) => resp.json())
-      .then((data) => {
+    const projectRef = ref(db, `projects/${project.id}`);
+    update(projectRef, project)
+      .then(() => {
         setShowServiceForm(false);
+        setServices([...project.services]);
       })
       .catch((err) => console.log(err));
   }
@@ -113,15 +102,9 @@ function Project() {
     projectUpdated.services = servicesUpdated;
     projectUpdated.cost = parseFloat(projectUpdated.cost) - parseFloat(cost);
 
-    fetch(`http://localhost:5000/projects/${projectUpdated.id}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(projectUpdated),
-    })
-      .then((resp) => resp.json())
-      .then((data) => {
+    const projectRef = ref(db, `projects/${projectUpdated.id}`);
+    update(projectRef, projectUpdated)
+      .then(() => {
         setProject(projectUpdated);
         setServices(servicesUpdated);
         setMessage('Serviço removido com sucesso!');

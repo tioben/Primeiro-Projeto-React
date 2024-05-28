@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { db } from '../../../firebaseConfig'; // Importa a referência do banco de dados do Firebase
+import { ref, get, update } from 'firebase/database';
 import Input from '../Form/Input';
 import Select from '../Form/Select';
 import SubmitButton from '../Form/SubmitButton';
@@ -10,22 +12,40 @@ function ProjectForm({ handleSubmit, btnText, projectData }) {
 
   // Coletando os dados de Categoria para colocar no select
   useEffect(() => {
-    fetch('http://localhost:5000/categories', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((resp) => resp.json())
-      .then((data) => {
-        setCategories(data);
+    const categoriesRef = ref(db, 'categories'); // Referência para a coleção de categorias no Firebase
+    get(categoriesRef)
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          const data = snapshot.val();
+          const categoriesArray = Object.keys(data).map((key) => ({
+            id: key,
+            ...data[key],
+          }));
+          setCategories(categoriesArray);
+        } else {
+          console.log('No categories available');
+        }
       })
       .catch((err) => console.log(err));
   }, []);
 
+  // Atualiza o estado do projeto se o projectData mudar
+  useEffect(() => {
+    setProject(projectData || {});
+  }, [projectData]);
+
   const submit = (e) => {
     e.preventDefault();
-    handleSubmit(project);
+
+    // Atualiza o projeto no Firebase
+    const projectRef = ref(db, `projects/${project.id}`);
+    update(projectRef, project)
+      .then(() => {
+        handleSubmit(project); // Chama a função handleSubmit do componente pai
+      })
+      .catch((err) => {
+        console.log('Error updating project:', err);
+      });
   };
 
   function handleChange(e) {

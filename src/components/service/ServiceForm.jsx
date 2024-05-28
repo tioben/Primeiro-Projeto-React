@@ -7,11 +7,17 @@ import SubmitButton from '../Form/SubmitButton';
 function ServiceForm({ handleSubmit, btnText, projectData }) {
   const [service, setService] = useState({});
 
+  // Certifique-se de que projectData.services seja inicializado como uma array vazia se estiver undefined
+  if (!projectData.services) {
+    projectData.services = [];
+  }
+
   function submit(e) {
     e.preventDefault();
     projectData.services.push(service);
     handleSubmit(projectData);
   }
+
   function handleChange(e) {
     setService({ ...service, [e.target.name]: e.target.value });
   }

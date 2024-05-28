@@ -1,26 +1,20 @@
 import ProjectForm from '../Project/ProjectForm';
 import styles from './Newproject.module.css';
 import { useNavigate } from 'react-router-dom';
+import { db } from '../../../firebaseConfig';
+import { ref, push } from 'firebase/database';
 
 function Newproject() {
-  const navigate = useNavigate(); // useNavigate retorna a função de navegação
+  const navigate = useNavigate();
 
   function createPost(project) {
-    // Iniciando cost e services
+    // Inicializando cost e services
     project.cost = 0;
     project.services = [];
 
-    fetch('http://localhost:5000/projects', {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(project),
-    })
-      .then((resp) => resp.json())
-      .then((data) => {
-        console.log(data);
-        // Redirect usando navigate
+    const projectsRef = ref(db, 'projects');
+    push(projectsRef, project)
+      .then(() => {
         navigate('/projects', {
           state: { message: 'Projeto criado com sucesso!' },
         });
