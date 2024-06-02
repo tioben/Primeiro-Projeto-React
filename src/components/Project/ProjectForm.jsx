@@ -35,17 +35,21 @@ function ProjectForm({ handleSubmit, btnText, projectData }) {
   }, [projectData]);
 
   const submit = (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Previne o comportamento padrão
 
-    // Atualiza o projeto no Firebase
-    const projectRef = ref(db, `projects/${project.id}`);
-    update(projectRef, project)
-      .then(() => {
-        handleSubmit(project); // Chama a função handleSubmit do componente pai
-      })
-      .catch((err) => {
-        console.log('Error updating project:', err);
-      });
+    // Verifique se o ID do projeto está presente antes de atualizar
+    if (project.id) {
+      const projectRef = ref(db, `projects/${project.id}`);
+      update(projectRef, project)
+        .then(() => {
+          handleSubmit(project); // Chama a função handleSubmit do componente pai
+        })
+        .catch((err) => {
+          console.log('Error updating project:', err);
+        });
+    } else {
+      handleSubmit(project);
+    }
   };
 
   function handleChange(e) {
@@ -73,7 +77,7 @@ function ProjectForm({ handleSubmit, btnText, projectData }) {
         value={project.name || ''}
       />
       <Input
-        text="Orçamento do projeto "
+        text="Orçamento do projeto"
         type="number"
         name="budget"
         placeholder="Insira o orçamento total"
