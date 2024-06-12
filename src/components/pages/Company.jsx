@@ -12,7 +12,7 @@ function Company() {
       </p>
       <ul>
         <li>
-          <strong>React</strong>:
+          <h3>React</h3>
           <ul>
             <li>
               <strong>useState</strong>: Hook usado para adicionar estado a
@@ -50,7 +50,7 @@ function Company() {
           </ul>
         </li>
         <li>
-          <strong>React Router</strong>:
+          <h3>React Router</h3>
           <ul>
             <li>
               <strong>useNavigate</strong>: Hook usado para programaticamente
@@ -116,7 +116,7 @@ navigate('/home');`}
           </ul>
         </li>
         <li>
-          <strong>UUID</strong>:
+          <h3>UUID</h3>
           <ul>
             <li>
               <strong>parse</strong>: Função usada para converter uma string
@@ -133,7 +133,7 @@ const id = uuidv4();`}</code>
           </ul>
         </li>
         <li>
-          <strong>React Icons</strong>:
+          <h3>React Icons</h3>
           <ul>
             <li>
               <strong>FaLinkedin</strong> e <strong>FaGithub</strong>: Ícones
@@ -147,7 +147,7 @@ const id = uuidv4();`}</code>
           </ul>
         </li>
         <li>
-          <strong>JSON-SERVER</strong>:
+          <h3>JSON-SERVER</h3>
           <p>
             JSON-SERVER é uma ferramenta usada para criar um servidor RESTful
             simples a partir de um arquivo JSON. Ele é utilizado para simular
@@ -163,7 +163,7 @@ const id = uuidv4();`}</code>
           </p>
         </li>
         <li>
-          <strong>Firebase</strong>:
+          <h3>Firebase</h3>
           <p>
             O Firebase é uma plataforma de desenvolvimento de aplicativos móveis
             e web. Ele oferece diversos serviços, como autenticação, banco de
@@ -224,7 +224,7 @@ const id = uuidv4();`}</code>
           </p>
         </li>
         <li>
-          <strong>Componentização</strong>:
+          <h3>Componentização</h3>
           <p>
             Em React, a componentização é a prática de dividir a interface do
             usuário em componentes reutilizáveis e independentes. Cada
@@ -235,7 +235,7 @@ const id = uuidv4();`}</code>
           </p>
         </li>
         <li>
-          <strong>Estilos Dinâmicos</strong>:
+          <h3>Estilos Dinâmicos</h3>
           <p>
             Estilos dinâmicos permitem a modificação de estilos CSS com base no
             estado do componente ou nas propriedades recebidas. Isso pode ser
@@ -249,7 +249,7 @@ const id = uuidv4();`}</code>
           </p>
         </li>
         <li>
-          <strong>Tratamento de Formulários</strong>:
+          <h3>Tratamento de Formulários</h3>
           <p>
             O tratamento de formulários em React envolve a captura e manipulação
             de entradas do usuário, validação de dados e submissão. Com o uso de
@@ -273,7 +273,7 @@ const handleSubmit = (e) => {
           </p>
         </li>
         <li>
-          <strong>Desenvolvimento de Funções</strong>:
+          <h3>Desenvolvimento de Funções</h3>
           <p>
             Em React, as funções são usadas para definir a lógica de negócios e
             manipulação de dados dentro dos componentes. Funções como
@@ -290,7 +290,7 @@ const handleSubmit = (e) => {
           </p>
         </li>
         <li>
-          <strong>Layouts</strong>:
+          <h3>Layouts</h3>
           <p>
             A criação de layouts em React envolve a organização e disposição dos
             componentes na interface do usuário. Com a ajuda de CSS e frameworks
@@ -301,7 +301,7 @@ const handleSubmit = (e) => {
           </p>
         </li>
         <li>
-          <strong>Props</strong>:
+          <h3>Props</h3>
           <p>
             `Props` (abreviação de propriedades) são parâmetros passados para
             componentes React que permitem a comunicação de dados entre
