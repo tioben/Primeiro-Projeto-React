@@ -148,115 +148,127 @@ const id = uuidv4();`}</code>
         </li>
         <li>
           <h3>JSON-SERVER</h3>
-          <p>
-            JSON-SERVER é uma ferramenta usada para criar um servidor RESTful
-            simples a partir de um arquivo JSON. Ele é utilizado para simular
-            uma API, permitindo a criação, edição e exclusão de projetos com os
-            métodos GET, PATCH e DELETE. Por exemplo:
-            <pre>
-              <code>{`fetch('http://localhost:3000/projects', { method: 'GET' });`}</code>
-            </pre>
-            Busca todos os projetos. A função <code>fetch()</code> retorna uma
-            Promise, que pode ser manipulada com <code>then()</code> e{' '}
-            <code>catch()</code> para processar a resposta e lidar com erros.
-            Fundamental para integrar o front-end com APIs RESTful.
-          </p>
+          <ul>
+            <li>
+              JSON-SERVER é uma ferramenta usada para criar um servidor RESTful
+              simples a partir de um arquivo JSON. Ele é utilizado para simular
+              uma API, permitindo a criação, edição e exclusão de projetos com
+              os métodos GET, PATCH e DELETE. Por exemplo:
+              <pre>
+                <code>{`fetch('http://localhost:3000/projects', { method: 'GET' });`}</code>
+              </pre>
+              Busca todos os projetos. A função <code>fetch()</code> retorna uma
+              Promise, que pode ser manipulada com <code>then()</code> e{' '}
+              <code>catch()</code> para processar a resposta e lidar com erros.
+              Fundamental para integrar o front-end com APIs RESTful.
+            </li>
+          </ul>
         </li>
         <li>
           <h3>Firebase</h3>
-          <p>
-            O Firebase é uma plataforma de desenvolvimento de aplicativos móveis
-            e web. Ele oferece diversos serviços, como autenticação, banco de
-            dados em tempo real, armazenamento e hospedagem. Para tornar o
-            projeto funcional na web, foi necessário aprender conceitos sobre
-            Firebase e usar várias funções do Firebase:
-            <ul>
-              <li>
-                <strong>ref</strong>: A função <code>ref</code> cria uma
-                referência para um local específico no banco de dados Firebase.
-                Por exemplo:
-                <pre>
-                  <code>{`const dbRef = ref(getDatabase(), 'projects');`}</code>
-                </pre>
-                Cria uma referência ao nó 'projects' no banco de dados.
-              </li>
-              <li>
-                <strong>get</strong>: A função <code>get</code> é usada para
-                buscar dados de uma referência específica no Firebase. Por
-                exemplo:
-                <pre>
-                  <code>{`get(dbRef).then((snapshot) => { const data = snapshot.val(); });`}</code>
-                </pre>
-                Busca os dados no nó 'projects' e os armazena em 'data'.
-              </li>
-              <li>
-                <strong>remove</strong>: A função <code>remove</code> é usada
-                para excluir dados de uma referência específica no Firebase. Por
-                exemplo:
-                <pre>
-                  <code>{`remove(ref(getDatabase(), 'projects/' + projectId));`}</code>
-                </pre>
-                Exclui o projeto com o identificador 'projectId'.
-              </li>
-              <li>
-                <strong>update</strong>: A função <code>update</code> é usada
-                para atualizar dados em uma referência específica no Firebase.
-                Por exemplo:
-                <pre>
-                  <code>{`update(ref(getDatabase(), 'projects/' + projectId), { name: newName });`}</code>
-                </pre>
-                Atualiza o nome do projeto com 'projectId'.
-              </li>
-              <li>
-                <strong>push</strong>: A função <code>push</code> é usada para
-                adicionar novos dados a uma referência no Firebase. Por exemplo:
-                <pre>
-                  <code>{`const newProjectRef = push(ref(getDatabase(), 'projects'));`}</code>
-                </pre>
-                Adiciona um novo projeto ao nó 'projects' e retorna uma
-                referência a ele.
-              </li>
-            </ul>
-            O Firebase oferece uma solução de backend como serviço (BaaS),
-            simplificando o desenvolvimento de aplicações web e móveis,
-            especialmente no que diz respeito à configuração de infraestrutura e
-            gerenciamento de dados em tempo real.
-          </p>
+          <ul>
+            <li>
+              O Firebase é uma plataforma de desenvolvimento de aplicativos
+              móveis e web. Ele oferece diversos serviços, como autenticação,
+              banco de dados em tempo real, armazenamento e hospedagem. Para
+              tornar o projeto funcional na web, foi necessário aprender
+              conceitos sobre Firebase e usar várias funções do Firebase:
+              <ul>
+                <li>
+                  <strong>ref</strong>: A função <code>ref</code> cria uma
+                  referência para um local específico no banco de dados
+                  Firebase. Por exemplo:
+                  <pre>
+                    <code>{`const dbRef = ref(getDatabase(), 'projects');`}</code>
+                  </pre>
+                  Cria uma referência ao nó 'projects' no banco de dados.
+                </li>
+                <li>
+                  <strong>get</strong>: A função <code>get</code> é usada para
+                  buscar dados de uma referência específica no Firebase. Por
+                  exemplo:
+                  <pre>
+                    <code>{`get(dbRef).then((snapshot) => { const data = snapshot.val(); });`}</code>
+                  </pre>
+                  Busca os dados no nó 'projects' e os armazena em 'data'.
+                </li>
+                <li>
+                  <strong>remove</strong>: A função <code>remove</code> é usada
+                  para excluir dados de uma referência específica no Firebase.
+                  Por exemplo:
+                  <pre>
+                    <code>{`remove(ref(getDatabase(), 'projects/' + projectId));`}</code>
+                  </pre>
+                  Exclui o projeto com o identificador 'projectId'.
+                </li>
+                <li>
+                  <strong>update</strong>: A função <code>update</code> é usada
+                  para atualizar dados em uma referência específica no Firebase.
+                  Por exemplo:
+                  <pre>
+                    <code>{`update(ref(getDatabase(), 'projects/' + projectId), { name: newName });`}</code>
+                  </pre>
+                  Atualiza o nome do projeto com 'projectId'.
+                </li>
+                <li>
+                  <strong>push</strong>: A função <code>push</code> é usada para
+                  adicionar novos dados a uma referência no Firebase. Por
+                  exemplo:
+                  <pre>
+                    <code>{`const newProjectRef = push(ref(getDatabase(), 'projects'));`}</code>
+                  </pre>
+                  Adiciona um novo projeto ao nó 'projects' e retorna uma
+                  referência a ele.
+                </li>
+              </ul>
+              O Firebase oferece uma solução de backend como serviço (BaaS),
+              simplificando o desenvolvimento de aplicações web e móveis,
+              especialmente no que diz respeito à configuração de infraestrutura
+              e gerenciamento de dados em tempo real.
+            </li>
+          </ul>
         </li>
         <li>
           <h3>Componentização</h3>
-          <p>
-            Em React, a componentização é a prática de dividir a interface do
-            usuário em componentes reutilizáveis e independentes. Cada
-            componente pode possuir seu próprio estado e lógica, permitindo um
-            desenvolvimento mais modular e manutenção simplificada. Por exemplo,
-            um componente de botão pode ser usado em várias partes da aplicação
-            sem duplicação de código.
-          </p>
+          <ul>
+            <li>
+              Em React, a componentização é a prática de dividir a interface do
+              usuário em componentes reutilizáveis e independentes. Cada
+              componente pode possuir seu próprio estado e lógica, permitindo um
+              desenvolvimento mais modular e manutenção simplificada. Por
+              exemplo, um componente de botão pode ser usado em várias partes da
+              aplicação sem duplicação de código.
+            </li>
+          </ul>
         </li>
         <li>
           <h3>Estilos Dinâmicos</h3>
-          <p>
-            Estilos dinâmicos permitem a modificação de estilos CSS com base no
-            estado do componente ou nas propriedades recebidas. Isso pode ser
-            feito usando classes condicionais ou diretamente através de objetos
-            de estilo em JSX. Por exemplo:
-            <pre>
-              <code>{`const buttonStyle = { backgroundColor: isActive ? 'green' : 'red' };`}</code>
-            </pre>
-            Usa uma condição para definir a cor de fundo de um botão com base no
-            estado `isActive`.
-          </p>
+          <ul>
+            <li>
+              Estilos dinâmicos permitem a modificação de estilos CSS com base
+              no estado do componente ou nas propriedades recebidas. Isso pode
+              ser feito usando classes condicionais ou diretamente através de
+              objetos de estilo em JSX. Por exemplo:
+              <pre>
+                <code>{`const buttonStyle = { backgroundColor: isActive ? 'green' : 'red' };`}</code>
+              </pre>
+              Usa uma condição para definir a cor de fundo de um botão com base
+              no estado `isActive`.
+            </li>
+          </ul>
         </li>
         <li>
           <h3>Tratamento de Formulários</h3>
-          <p>
-            O tratamento de formulários em React envolve a captura e manipulação
-            de entradas do usuário, validação de dados e submissão. Com o uso de
-            hooks como `useState`, é possível gerenciar o estado dos campos do
-            formulário e validar os dados antes do envio. Por exemplo:
-            <pre>
-              <code>{`const [formData, setFormData] = useState({ name: '', email: '' });
+          <ul>
+            <li>
+              <p>
+                O tratamento de formulários em React envolve a captura e
+                manipulação de entradas do usuário, validação de dados e
+                submissão. Com o uso de hooks como `useState`, é possível
+                gerenciar o estado dos campos do formulário e validar os dados
+                antes do envio. Por exemplo:
+                <pre>
+                  <code>{`const [formData, setFormData] = useState({ name: '', email: '' });
 
 const handleInputChange = (e) => {
   const { name, value } = e.target;
@@ -267,54 +279,69 @@ const handleSubmit = (e) => {
   e.preventDefault();
   console.log(formData);
 };`}</code>
-            </pre>
-            Isso captura as mudanças nos campos do formulário e as armazena no
-            estado, e lida com a submissão do formulário.
-          </p>
+                </pre>
+                Isso captura as mudanças nos campos do formulário e as armazena
+                no estado, e lida com a submissão do formulário.
+              </p>
+            </li>
+          </ul>
         </li>
         <li>
           <h3>Desenvolvimento de Funções</h3>
-          <p>
-            Em React, as funções são usadas para definir a lógica de negócios e
-            manipulação de dados dentro dos componentes. Funções como
-            manipuladores de eventos, funções de transformação de dados e hooks
-            personalizados permitem encapsular e reutilizar lógica complexa. Por
-            exemplo:
-            <pre>
-              <code>{`const calculateTotal = (items) => {
+          <ul>
+            <li>
+              <p>
+                Em React, as funções são usadas para definir a lógica de
+                negócios e manipulação de dados dentro dos componentes. Funções
+                como manipuladores de eventos, funções de transformação de dados
+                e hooks personalizados permitem encapsular e reutilizar lógica
+                complexa. Por exemplo:
+                <pre>
+                  <code>{`const calculateTotal = (items) => {
   return items.reduce((sum, item) => sum + item.price, 0);
 };`}</code>
-            </pre>
-            Essa função calcula o total dos preços dos itens em um carrinho de
-            compras.
-          </p>
+                </pre>
+                Essa função calcula o total dos preços dos itens em um carrinho
+                de compras.
+              </p>
+            </li>
+          </ul>
         </li>
         <li>
           <h3>Layouts</h3>
-          <p>
-            A criação de layouts em React envolve a organização e disposição dos
-            componentes na interface do usuário. Com a ajuda de CSS e frameworks
-            como Flexbox ou Grid, é possível criar layouts responsivos e
-            acessíveis. Componentes de layout podem ser usados para definir a
-            estrutura principal da aplicação, como cabeçalhos, rodapés e áreas
-            de conteúdo.
-          </p>
+          <ul>
+            <li>
+              <p>
+                A criação de layouts em React envolve a organização e disposição
+                dos componentes na interface do usuário. Com a ajuda de CSS e
+                frameworks como Flexbox ou Grid, é possível criar layouts
+                responsivos e acessíveis. Componentes de layout podem ser usados
+                para definir a estrutura principal da aplicação, como
+                cabeçalhos, rodapés e áreas de conteúdo.
+              </p>
+            </li>
+          </ul>
         </li>
         <li>
           <h3>Props</h3>
-          <p>
-            `Props` (abreviação de propriedades) são parâmetros passados para
-            componentes React que permitem a comunicação de dados entre
-            componentes. As props são imutáveis dentro do componente filho e são
-            usadas para personalizar e configurar os componentes. Por exemplo:
-            <pre>
-              <code>{`const Welcome = (props) => {
+          <ul>
+            <li>
+              <p>
+                `Props` (abreviação de propriedades) são parâmetros passados
+                para componentes React que permitem a comunicação de dados entre
+                componentes. As props são imutáveis dentro do componente filho e
+                são usadas para personalizar e configurar os componentes. Por
+                exemplo:
+                <pre>
+                  <code>{`const Welcome = (props) => {
   return <h1>Hello, {props.name}</h1>;
 };`}</code>
-            </pre>
-            Aqui, o componente `Welcome` recebe uma prop `name` e a usa para
-            exibir uma mensagem de saudação.
-          </p>
+                </pre>
+                Aqui, o componente `Welcome` recebe uma prop `name` e a usa para
+                exibir uma mensagem de saudação.
+              </p>
+            </li>
+          </ul>
         </li>
       </ul>
     </div>
