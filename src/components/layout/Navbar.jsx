@@ -21,7 +21,7 @@ function Navbar() {
             <Link to="/contact">Contato</Link>
           </li>
           <li className={styles.item}>
-            <Link to="/company">Empresa</Link>
+            <Link to="/company">Sobre o projeto</Link>
           </li>
         </ul>
       </Container>
