@@ -1,7 +1,7 @@
 import styles from './Company.module.css';
 function Company() {
   return (
-    <div>
+    <div className={styles.companyContainer}>
       <h1>Bem-vindo ao Costs!</h1>
       <h2>Meu primeiro projeto React</h2>
       <p>
